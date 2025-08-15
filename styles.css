@@ -1,0 +1,101 @@
+/* Toolbar container na barra nativa */
+.pdf-ink-flexbar { display: flex; align-items: center; }
+.pdf-ink-spacer { flex: 1 1 auto; }
+.pdf-ink-right { display: inline-flex; align-items: center; gap: 6px; }
+
+/* Host flutuante quando não há barra nativa ainda */
+.pdf-ink-right.pdf-ink-floating {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 100001;
+  pointer-events: auto;
+}
+
+/* Toolbar inline */
+.pdf-ink-toolbar-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 6px;
+  border-left: 1px solid var(--background-modifier-border);
+}
+
+.pdf-ink-toolbar-inline .clickable-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  color: var(--text-muted);
+  transition: background 120ms ease, color 120ms ease;
+}
+.pdf-ink-toolbar-inline .clickable-icon:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+.pdf-ink-toolbar-inline .clickable-icon.is-active {
+  background: var(--background-modifier-active-hover);
+  color: var(--text-normal);
+}
+
+.pdf-ink-toolbar-inline input[type="color"] {
+  appearance: none;
+  width: 28px; height: 28px;
+  padding: 0; border: none; border-radius: 6px;
+  background: transparent; cursor: pointer;
+}
+.pdf-ink-toolbar-inline input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+.pdf-ink-toolbar-inline input[type="color"]::-webkit-color-swatch {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+}
+
+.pdf-ink-toolbar-inline input[type="range"] {
+  width: 90px;
+  height: 4px;
+}
+
+.pdf-ink-toolbar-inline .sep {
+  display: inline-block;
+  width: 1px; height: 18px;
+  background: var(--background-modifier-border);
+  margin: 0 2px;
+}
+
+/* Camada de tinta por página */
+.pdf-ink-layer {
+  pointer-events: none;
+  z-index: 2147483647 !important;
+  will-change: transform, opacity;
+}
+.pdf-ink-layer canvas {
+  pointer-events: auto;
+  will-change: contents;
+}
+
+/* Enquanto estiver desenhando, desabilita pan/zoom do viewer no alvo */
+.pdf-ink-layer.is-drawing,
+.pdf-ink-layer.is-drawing canvas {
+  touch-action: none !important;
+}
+
+/* Status chip (WebGL/Canvas) */
+.pdf-ink-status {
+  font-size: 12px;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-modifier-hover);
+  color: var(--text-muted);
+  user-select: none;
+}
+.pdf-ink-status.ok {
+  color: var(--text-success);
+  border-color: var(--interactive-accent);
+}
+.pdf-ink-status.bad {
+  color: var(--text-error);
+  border-color: var(--color-red, #cc3344);
+}

@@ -1,0 +1,12 @@
+{
+  "onlyPenDraws": true,
+  "penColor": "#229f19",
+  "penSize": 20,
+  "penOpacity": 0.25,
+  "velocityAffectsSize": true,
+  "sidecarDir": "PDF Ink",
+  "sidecarStrategy": "flat",
+  "rendererMode": "webgl",
+  "enableTiltDynamics": true,
+  "doubleTapUndo": true
+}
